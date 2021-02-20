@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <p>Find Winning Lotto Number</p>
+        <p>God blessed you.</p>
+
+        <button onclick="display()">Try it</button>
+        <link rel="stylesheet" href="style.css" />
+
+        <p>
+            <span id="ball0" class="ball_645 lrg ball1">3</span>
+            <span id="ball1" class="ball_645 lrg ball1">4</span>
+            <span id="ball2" class="ball_645 lrg ball2">15</span>
+            <span id="ball3" class="ball_645 lrg ball3">22</span>
+            <span id="ball4" class="ball_645 lrg ball3">28</span>
+            <span id="ball5" class="ball_645 lrg ball4">40</span>
+        </p>
+
+        <script src="chance.js"></script>
+        <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+        <script>
+            var list = [];
+            var possibility = [];
+            var displayList = [1, 2, 3, 4, 5, 6];
+            for (var i = 1; i <= 45; i++) {
+                list.push(i);
+            }
+
+            for (var i = 1; i <= 45; i++) {
+                possibility.push(1);
+            }
+
+            for (var i = 0; i < displayList.length; i++) {
+                var res = chance.weighted(list, possibility);
+                displayList[i] = res;
+            }
+
+            function generateNumber() {
+                for (var i = 0; i < displayList.length; i++) {
+                    var res = chance.weighted(list, possibility);
+                    displayList[i] = res;
+                }
+                displayList.sort(function(a, b){return a-b})
+            }
+            
+            function applyBallColor(res, i) {
+                switch (true) {
+                    case res > 0a && res <= 10:
+                        document.getElementById('ball' + i).className = 'ball_645 lrg ball1';
+                        break;
+                    case res > 10 && res <= 20:
+                        document.getElementById('ball' + i).className = 'ball_645 lrg ball2';
+                        break;
+                    case res > 20 && res <= 30:
+                        document.getElementById('ball' + i).className = 'ball_645 lrg ball3';
+                        break;
+                    case res > 30 && res <= 40:
+                        document.getElementById('ball' + i).className = 'ball_645 lrg ball4';
+                        break;
+                    case res > 40 && res <= 45:
+                        document.getElementById('ball' + i).className = 'ball_645 lrg ball5';
+                        break;
+
+                    default:
+                        document.getElementById('ball' + i).className = 'ball_645 lrg ball5';
+                        console.log('Color Error');
+                        break;
+                }
+            }
+
+            function display() {
+                generateNumber();
+
+                for (var i = 0; i < displayList.length; i++) {
+                    document.getElementById('ball' + i).innerHTML = displayList[i];
+                    applyBallColor(displayList[i], i);
+                }
+            }
+        </script>
+    </body>
+</html>
