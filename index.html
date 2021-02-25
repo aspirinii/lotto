@@ -1,81 +1,101 @@
 <!DOCTYPE html>
 <html>
-    <body>
-        <p>Find Winning Lotto Number</p>
-        <p>God blessed you.</p>
-
-        <button onclick="display()">Try it</button>
+    <head>
+        <script src="chance.js"></script>
+        <script src="lotto.js"></script>
+        <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
         <link rel="stylesheet" href="style.css" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+            crossorigin="anonymous"
+        />
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <p>
+        <!-- bootstrap -->
+        <style>
+            .bgimg {
+                background-position: center;
+                background-size: cover;
+                background-image: url('https://images.unsplash.com/photo-1470219556762-1771e7f9427d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1778&q=80');
+                background-color: black;
+                background-repeat: no-repeat;
+            }
+
+            .outer {
+                opacity: 0.9;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                margin: 0 auto;
+                margin-left : 30px;
+            }
+            .outerball {
+                opacity: 0.9;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                margin: 0 auto;
+            }
+
+            .grad {
+                background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+            }
+            h1 {
+                font-family: 'Arial', Times, sans-serif;
+                font-size: 5em;
+            }
+        </style>
+    </head>
+    <body style="background-color: black;">
+        <div class="bgimg">
+            <h1
+                class="outer opacity"
+                style="
+                    opacity: 0.9;
+                    color: #fff;
+                    text-shadow: 1px 1px 5px rgba(0, 49, 70, 0.8);
+                    border-top-width: 10%;
+                    padding-top: 10%;
+                "
+            >
+                Winning Lotto
+            </h1>
+            <div class="text-center" style="padding-top: 5%; padding-bottom: 5%;">
+                <button
+                    type="button"
+                    class="btn btn-warning btn-lg"
+                    onclick="display()"
+                    style="
+                        opacity: 0.9;
+                        color: #fff;
+                        text-shadow: 0px 0px 3px rgba(0, 49, 70, 0.8);
+                    "
+                >
+                    Find
+                </button>
+            </div>
+
+            <div class="grad"><br /></div>
+        </div>
+
+        <span class="outerball" style="padding-top: 5%; padding-bottom: 5%;">
             <span id="ball0" class="ball_645 lrg ball1">3</span>
             <span id="ball1" class="ball_645 lrg ball1">4</span>
             <span id="ball2" class="ball_645 lrg ball2">15</span>
             <span id="ball3" class="ball_645 lrg ball3">22</span>
             <span id="ball4" class="ball_645 lrg ball3">28</span>
             <span id="ball5" class="ball_645 lrg ball4">40</span>
-        </p>
-
-        <script src="chance.js"></script>
-        <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
-        <script>
-            var list = [];
-            var possibility = [];
-            var displayList = [1, 2, 3, 4, 5, 6];
-            for (var i = 1; i <= 45; i++) {
-                list.push(i);
-            }
-
-            for (var i = 1; i <= 45; i++) {
-                possibility.push(1);
-            }
-
-            for (var i = 0; i < displayList.length; i++) {
-                var res = chance.weighted(list, possibility);
-                displayList[i] = res;
-            }
-
-            function generateNumber() {
-                for (var i = 0; i < displayList.length; i++) {
-                    var res = chance.weighted(list, possibility);
-                    displayList[i] = res;
-                }
-                displayList.sort(function(a, b){return a-b})
-            }
-            
-            function applyBallColor(res, i) {
-                switch (true) {
-                    case res > 0 && res <= 10:
-                        document.getElementById('ball' + i).className = 'ball_645 lrg ball1';
-                        break;
-                    case res > 10 && res <= 20:
-                        document.getElementById('ball' + i).className = 'ball_645 lrg ball2';
-                        break;
-                    case res > 20 && res <= 30:
-                        document.getElementById('ball' + i).className = 'ball_645 lrg ball3';
-                        break;
-                    case res > 30 && res <= 40:
-                        document.getElementById('ball' + i).className = 'ball_645 lrg ball4';
-                        break;
-                    case res > 40 && res <= 45:
-                        document.getElementById('ball' + i).className = 'ball_645 lrg ball5';
-                        break;
-
-                    default:
-                        document.getElementById('ball' + i).className = 'ball_645 lrg ball5';
-                        console.log('Color Error');
-                        break;
-                }
-            }
-
-            function display() {
-                generateNumber();
-
-                for (var i = 0; i < displayList.length; i++) {
-                    document.getElementById('ball' + i).innerHTML = displayList[i];
-                    applyBallColor(displayList[i], i);
-                }
-            }
-        </script>
+        </span>
+        <div class="outer">
+            <p
+                class="display-7"
+                style="opacity: 0.9; color: #fff; text-shadow: 0px 0px 3px rgba(0, 49, 70, 0.8);"
+            >
+                God blessed you
+            </p>
+        </div>
     </body>
 </html>
